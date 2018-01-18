@@ -34,7 +34,6 @@ pipeline {
         stage('Collect Results') {
             steps {
                 step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-//                step([$class: 'SauceOnDemandTestPublisher'])
                 saucePublisher()
             }
         }

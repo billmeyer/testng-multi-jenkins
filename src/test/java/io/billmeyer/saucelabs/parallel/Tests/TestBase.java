@@ -22,7 +22,7 @@ import java.util.Date;
 public class TestBase
 {
 
-    public String buildTag = System.getenv("BUILD_TAG");
+//    public String buildTag = System.getenv("BUILD_TAG");
 
     public String userName = System.getenv("SAUCE_USERNAME");
 
@@ -135,11 +135,13 @@ public class TestBase
         caps.setCapability("name", String.format("%s - %s %s on %s [%s]", methodName, browser, version, os, new Date()));
         caps.setCapability("screenResolution", screenResolution);
         caps.setCapability("seleniumVersion", "3.7.1");
+        caps.setCapability("build", System.getenv("JOB_NAME") + "__" + System.getenv("BUILD_NUMBER"));
 
-        if (buildTag != null)
-        {
-            caps.setCapability("build", buildTag);
-        }
+
+//        if (buildTag != null)
+//        {
+//            caps.setCapability("build", buildTag);
+//        }
 
         URL url = new URL("https://" + userName + ":" + accesskey + "@ondemand.saucelabs.com:443/wd/hub");
 
@@ -151,6 +153,20 @@ public class TestBase
         String sessionId = driver.getSessionId().toString();
         sessionIdThreadLocal.set(sessionId);
 
+        String jobName = System.getenv("JOB_NAME");
+
+        /**
+         * The following environment variables will be populated when running in a Jenkins pipeline using the Sauce plugins. We output
+         * these so that the saucePublisher will properly pick up the required output from the test results and publish them to the Sauce
+         * Dashboard.
+         * @see https://wiki.saucelabs.com/display/DOCS/Setting+Up+Reporting+between+Sauce+Labs+and+Jenkins
+         * @see https://wiki.saucelabs.com/display/DOCS/Using+the+Sauce+Labs+Jenkins+Plugin+with+Jenkins+Pipeline
+         */
+        System.out.printf("JOB_NAME: %s\n", jobName);
+        System.out.printf("BUILD_NUMBER: %s\n", System.getenv("BUILD_NUMBER"));
+        System.out.printf("JENKINS_BUILD_NUMBER: %s\n", System.getenv("JENKINS_BUILD_NUMBER"));
+        System.out.printf("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionId, jobName);
+        
         /**
          * There are two methods of annotating Sauce Jobs:
          *
@@ -182,10 +198,8 @@ public class TestBase
         SauceREST sauceRest = sauceRestThreadLocal.get();
         String sessionId = sessionIdThreadLocal.get();
 
-        if (result != null && result.isSuccess())
-            sauceRest.jobPassed(sessionId);
-        else
-            sauceRest.jobFailed(sessionId);
+        if (result != null && result.isSuccess()) sauceRest.jobPassed(sessionId);
+        else sauceRest.jobFailed(sessionId);
 
         webDriverThreadLocal.get().quit();
     }

@@ -165,8 +165,8 @@ public class TestBase
         System.out.printf("JOB_NAME: %s\n", jobName);
         System.out.printf("BUILD_NUMBER: %s\n", System.getenv("BUILD_NUMBER"));
         System.out.printf("JENKINS_BUILD_NUMBER: %s\n", System.getenv("JENKINS_BUILD_NUMBER"));
-        System.out.printf("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionId, jobName);
-        
+        System.out.printf("SauceOnDemandSessionID=%1$s job-name=%2$s\n", sessionId, jobName);
+
         /**
          * There are two methods of annotating Sauce Jobs:
          *

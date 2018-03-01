@@ -1,4 +1,4 @@
-package io.billmeyer.saucelabs.parallel.Pages;
+package com.saucelabs.billmeyer.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,13 +9,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GuineaPigPage
 {
-    @FindBy(linkText = "i am a link") private WebElement theActiveLink;
+    @FindBy(linkText = "i am a link")
+    private WebElement theActiveLink;
 
-    @FindBy(id = "your_comments") private WebElement yourCommentsSpan;
+    @FindBy(id = "your_comments")
+    private WebElement yourCommentsSpan;
 
-    @FindBy(id = "comments") private WebElement commentsTextAreaInput;
+    @FindBy(id = "comments")
+    private WebElement commentsTextAreaInput;
 
-    @FindBy(id = "submit") private WebElement submitButton;
+    @FindBy(id = "submit")
+    private WebElement submitButton;
 
     public WebDriver driver;
     public static String url = "https://saucelabs-sample-test-frameworks.github.io/training-test-page";

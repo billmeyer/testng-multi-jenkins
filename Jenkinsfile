@@ -37,5 +37,11 @@ pipeline {
                 saucePublisher()
             }
         }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying code...'
+            }
+        }
     }
 }

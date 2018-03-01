@@ -1,6 +1,6 @@
-package io.billmeyer.saucelabs.parallel.Tests;
+package com.saucelabs.billmeyer.tests;
 
-import io.billmeyer.saucelabs.parallel.Pages.GuineaPigPage;
+import com.saucelabs.billmeyer.pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -17,12 +17,11 @@ public class TextInputTest extends TestBase
      * @throws InvalidElementStateException
      */
     @org.testng.annotations.Test(dataProvider = "hardCodedBrowsers")
-    public void verifyCommentInputTest(String browser, String version, String os, String screenResolution, Method method) throws
-            MalformedURLException, InvalidElementStateException
+    public void verifyCommentInputTest(String browser, String version, String os, String screenResolution, Method method)
+    throws MalformedURLException, InvalidElementStateException
     {
-        createDriver(browser, version, os, screenResolution, method.getName());
-
-        WebDriver driver = getWebDriver();
+        WebDriver driver = createDriver(browser, version, os, screenResolution, method.getName());
+        Assert.assertNotNull(driver);
 
         String commentInputText = new Date().toString();
 

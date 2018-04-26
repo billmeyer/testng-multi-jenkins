@@ -34,6 +34,8 @@ public class SauceOnDemandDataProvider
                 "\"screenResolution\":\"1600x1200\"},{\"browser\": \"chrome\",\"version\": \"66\",\"os\": \"macOS 10.13\"," +
                 "\"screenResolution\":\"1600x1200\"}]");
 
+        System.out.printf("Sauce OnDemand Data Provider, json='%s'", json);
+
         if (json == null || json.equals(""))
         {
             throw new IllegalArgumentException("Unable to find JSON");

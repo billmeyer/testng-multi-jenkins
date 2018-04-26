@@ -56,30 +56,32 @@ public class TestBase
 
         // @formatter:off
         return new Object[][]{
-                new Object[]{"MicrosoftEdge", "14.14393", "Windows 10", "1920x1080"},
-                new Object[]{"firefox", "149.0", "Windows 10", "1440x900"}, // <== DESIGNED TO FAIL
-//                new Object[]{"internet explorer", "11.0", "Windows 7", "1280x1024"},
+//                new Object[]{"MicrosoftEdge", "14.14393", "Windows 10", "1920x1080"},
+                new Object[]{"MicrosoftEdge", "16.16299", "Windows 10", "1440x900"}
+                new Object[]{"MicrosoftEdge", "16.16299", "Windows 10", "1600x1500"} // <== DESIGNED TO FAIL ON SCREEN RESOLUTION
+                new Object[]{"firefox", "149.0", "Windows 10", "1440x900"}, // <== DESIGNED TO FAIL ON BROWSER VERSION
+                new Object[]{"internet explorer", "11.0", "Windows 7", "1280x1024"},
                 new Object[]{"safari", "11.0", "OS X 10.13", "1600x1200"},   // High Sierra
-//                new Object[]{"firefox", "57.0", "OS X 10.13", "1600x1200"},  // High Sierra
-//                new Object[]{"safari", "11.0", "OS X 10.12", "1600x1200"},   // Sierra
-////                new Object[]{"safari", "10.0", "OS X 10.11", "1280x960"},   // El Capitan
-////                new Object[]{"safari", "9.0", "OS X 10.11", "1280x960"},    // El Capitan
-//                new Object[]{"chrome", "54.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "55.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "56.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "57.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "58.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "59.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "60.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "61.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "62.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"chrome", "63.0", "OS X 10.10", "1440x900"},
-//                new Object[]{"firefox", "latest-1", "Windows 7", "1440x900"},
-//                new Object[]{"firefox", "latest-1", "Windows 8", "1440x900"},
-//                new Object[]{"firefox", "latest-1", "Windows 8.1", "1440x900"},
-//                new Object[]{"firefox", "latest-1", "Windows 10", "1440x900"},
-//                new Object[]{"chrome", "48.0", "Linux", "1024x768"},
-                new Object[]{"firefox", "45.0", "Linux", "1024x768"}
+                new Object[]{"firefox", "57.0", "OS X 10.13", "1600x1200"},  // High Sierra
+                new Object[]{"safari", "11.0", "OS X 10.12", "1600x1200"},   // Sierra
+//                new Object[]{"safari", "10.0", "OS X 10.11", "1280x960"},   // El Capitan
+//                new Object[]{"safari", "9.0", "OS X 10.11", "1280x960"},    // El Capitan
+                new Object[]{"chrome", "54.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "55.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "56.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "57.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "58.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "59.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "60.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "61.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "62.0", "OS X 10.10", "1440x900"},
+                new Object[]{"chrome", "63.0", "OS X 10.10", "1440x900"},
+                new Object[]{"firefox", "latest-1", "Windows 7", "1440x900"},
+                new Object[]{"firefox", "latest-1", "Windows 8", "1440x900"},
+                new Object[]{"firefox", "latest-1", "Windows 8.1", "1440x900"},
+                new Object[]{"firefox", "latest-1", "Windows 10", "1440x900"}
+                // new Object[]{"chrome", "48.0", "Linux", "1024x768"},
+                // new Object[]{"firefox", "45.0", "Linux", "1024x768"}
         };
         // @formatter:on
     }

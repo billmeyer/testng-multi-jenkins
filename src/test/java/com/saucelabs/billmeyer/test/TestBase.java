@@ -63,26 +63,26 @@ public class TestBase extends SauceOnDemandDataProvider
 
     /**
      * Constructs a new {@link RemoteWebDriver} instance which is configured to use the capabilities defined by the browser,
-     * version and os parameters, and which is configured to run against ondemand.saucelabs.com, using
+     * browserVersion and os parameters, and which is configured to run against ondemand.saucelabs.com, using
      * the userName and access key populated by the instance.
      *
      * @param browser    Represents the browser to be used as part of the test run.
-     * @param version    Represents the version of the browser to be used as part of the test run.
+     * @param browserVersion    Represents the browserVersion of the browser to be used as part of the test run.
      * @param os         Represents the operating system to be used as part of the test run.
      * @param methodName Represents the name of the test case that will be used to identify the test on Sauce.
      * @return
      * @throws MalformedURLException if an error occurs parsing the url
      */
-    protected RemoteWebDriver createDriver(String browser, String version, String os, String methodName) throws
+    protected RemoteWebDriver createDriver(String browser, String browserVersion, String os, String methodName) throws
             MalformedURLException
     {
         DesiredCapabilities caps = new DesiredCapabilities();
 
         // set desired capabilities to launch appropriate browser on Sauce
         caps.setCapability(CapabilityType.BROWSER_NAME, browser);
-        caps.setCapability(CapabilityType.VERSION, version);
+        caps.setCapability(CapabilityType.VERSION, browserVersion);
         caps.setCapability(CapabilityType.PLATFORM, os);
-        caps.setCapability("name", String.format("%s - %s %s on %s [%s]", methodName, browser, version, os, new Date()));
+        caps.setCapability("name", String.format("%s - %s %s on %s [%s]", methodName, browser, browserVersion, os, new Date()));
         caps.setCapability("seleniumVersion", "3.7.1");
         caps.setCapability("build", System.getenv("JOB_NAME") + "__" + System.getenv("BUILD_NUMBER"));
 

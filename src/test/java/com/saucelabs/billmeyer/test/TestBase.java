@@ -1,5 +1,6 @@
-package com.saucelabs.billmeyer.tests;
+package com.saucelabs.billmeyer.test;
 
+import com.saucelabs.billmeyer.util.SauceOnDemandDataProvider;
 import com.saucelabs.saucerest.SauceREST;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -7,9 +8,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
 
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
@@ -19,7 +18,7 @@ import java.util.Date;
  *
  * @author Neil Manvar
  */
-public class TestBase
+public class TestBase extends SauceOnDemandDataProvider
 {
 
 //    public String buildTag = System.getenv("BUILD_TAG");
@@ -39,60 +38,6 @@ public class TestBase
     private ThreadLocal<String> sessionIdThreadLocal = new ThreadLocal<String>();
 
     private ThreadLocal<SauceREST> sauceRestThreadLocal = new ThreadLocal<SauceREST>();
-
-    /**
-     * DataProvider that explicitly sets the browser combinations to be used.
-     *
-     * @param testMethod
-     * @return Two dimensional array of objects with browser, version, and platform information
-     */
-    @DataProvider(name = "hardCodedBrowsers", parallel = true)
-    public static Object[][] sauceBrowserDataProvider(Method testMethod)
-    {
-        /**
-         * Create an array of test OS/Browser/Screen Resolution combinations we want to test on.
-         * @see https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options#TestConfigurationOptions-SpecifyingtheScreenResolution
-         */
-
-        // @formatter:off
-        return new Object[][]{
-//                new Object[]{"MicrosoftEdge", "14.14393", "Windows 10", "1920x1080"},
-                new Object[]{"MicrosoftEdge", "16.16299", "Windows 10", "1440x900"}
-                new Object[]{"MicrosoftEdge", "16.16299", "Windows 10", "1600x1500"} // <== DESIGNED TO FAIL ON SCREEN RESOLUTION
-                new Object[]{"firefox", "149.0", "Windows 10", "1440x900"}, // <== DESIGNED TO FAIL ON BROWSER VERSION
-                new Object[]{"internet explorer", "11.0", "Windows 7", "1280x1024"},
-                new Object[]{"safari", "11.0", "OS X 10.13", "1600x1200"},   // High Sierra
-                new Object[]{"firefox", "57.0", "OS X 10.13", "1600x1200"},  // High Sierra
-                new Object[]{"safari", "11.0", "OS X 10.12", "1600x1200"},   // Sierra
-//                new Object[]{"safari", "10.0", "OS X 10.11", "1280x960"},   // El Capitan
-//                new Object[]{"safari", "9.0", "OS X 10.11", "1280x960"},    // El Capitan
-                new Object[]{"chrome", "54.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "55.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "56.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "57.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "58.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "59.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "60.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "61.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "62.0", "OS X 10.10", "1440x900"},
-                new Object[]{"chrome", "63.0", "OS X 10.10", "1440x900"},
-                new Object[]{"firefox", "latest-1", "Windows 7", "1440x900"},
-                new Object[]{"firefox", "latest-1", "Windows 8", "1440x900"},
-                new Object[]{"firefox", "latest-1", "Windows 8.1", "1440x900"},
-                new Object[]{"firefox", "latest-1", "Windows 10", "1440x900"}
-                // new Object[]{"chrome", "48.0", "Linux", "1024x768"},
-                // new Object[]{"firefox", "45.0", "Linux", "1024x768"}
-        };
-        // @formatter:on
-    }
-
-    /**
-     * @return the {@link WebDriver} for the current thread
-     */
-//    public RemoteWebDriver getWebDriver()
-//    {
-//        return webDriverThreadLocal.get();
-//    }
 
     /**
      * @return the Sauce Job id for the current thread
@@ -128,8 +73,8 @@ public class TestBase
      * @return
      * @throws MalformedURLException if an error occurs parsing the url
      */
-    protected RemoteWebDriver createDriver(String browser, String version, String os, String screenResolution, String methodName)
-    throws MalformedURLException
+    protected RemoteWebDriver createDriver(String browser, String version, String os, String screenResolution, String methodName) throws
+            MalformedURLException
     {
         DesiredCapabilities caps = new DesiredCapabilities();
 
@@ -199,8 +144,7 @@ public class TestBase
      * Sets the job status (PASS or FAIL) and closes the browser.
      */
     @AfterMethod
-    public void tearDown(ITestResult result)
-    throws Exception
+    public void tearDown(ITestResult result) throws Exception
     {
         /**
          * Example of using the Sauce Labs REST API to set the Job Status.

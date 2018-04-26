@@ -1,4 +1,4 @@
-package com.saucelabs.billmeyer.tests;
+package com.saucelabs.billmeyer.test;
 
 import com.saucelabs.billmeyer.pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
@@ -16,7 +16,7 @@ public class TextInputTest extends TestBase
      *
      * @throws InvalidElementStateException
      */
-    @org.testng.annotations.Test(dataProvider = "hardCodedBrowsers")
+    @org.testng.annotations.Test(dataProvider = "sauceOnDemandDataProvider")
     public void verifyCommentInputTest(String browser, String version, String os, String screenResolution, Method method)
     throws MalformedURLException, InvalidElementStateException
     {

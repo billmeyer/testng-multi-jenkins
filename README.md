@@ -1,4 +1,4 @@
-## MultiJavaSauce
+## testng-multi-jenkins
 
 Demonstrates running Selenium tests with the TestNG testing framework on Sauce Labs across multiple OS/Browser/Platform combinations in parallel.
 

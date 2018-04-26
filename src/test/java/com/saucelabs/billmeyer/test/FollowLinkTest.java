@@ -1,4 +1,4 @@
-package com.saucelabs.billmeyer.tests;
+package com.saucelabs.billmeyer.test;
 
 import com.saucelabs.billmeyer.pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
@@ -16,7 +16,7 @@ public class FollowLinkTest extends TestBase
      *
      * @throws InvalidElementStateException
      */
-    @Test(dataProvider = "hardCodedBrowsers")
+    @Test(dataProvider = "sauceOnDemandDataProvider")
     public void verifyLinkTest(String browser, String version, String os, String screenResolution, Method method)
     throws MalformedURLException, InvalidElementStateException
     {

@@ -21,8 +21,8 @@
 
     <test name="All Classes Test">
         <classes>
-            <class name="com.saucelabs.billmeyer.tests.FollowLinkTest"/>
-            <class name="com.saucelabs.billmeyer.tests.TextInputTest"/>
+            <class name="com.saucelabs.billmeyer.test.FollowLinkTest"/>
+            <class name="com.saucelabs.billmeyer.test.TextInputTest"/>
         </classes>
     </test>
 

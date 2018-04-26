@@ -17,10 +17,10 @@ public class TextInputTest extends TestBase
      * @throws InvalidElementStateException
      */
     @org.testng.annotations.Test(dataProvider = "sauceOnDemandDataProvider")
-    public void verifyCommentInputTest(String browser, String version, String os, String screenResolution, Method method)
+    public void verifyCommentInputTest(String browser, String version, String os, Method method)
     throws MalformedURLException, InvalidElementStateException
     {
-        WebDriver driver = createDriver(browser, version, os, screenResolution, method.getName());
+        WebDriver driver = createDriver(browser, version, os, method.getName());
         Assert.assertNotNull(driver);
 
         String commentInputText = new Date().toString();

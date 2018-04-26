@@ -73,7 +73,7 @@ public class TestBase extends SauceOnDemandDataProvider
      * @return
      * @throws MalformedURLException if an error occurs parsing the url
      */
-    protected RemoteWebDriver createDriver(String browser, String version, String os, String screenResolution, String methodName) throws
+    protected RemoteWebDriver createDriver(String browser, String version, String os, String methodName) throws
             MalformedURLException
     {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -83,7 +83,6 @@ public class TestBase extends SauceOnDemandDataProvider
         caps.setCapability(CapabilityType.VERSION, version);
         caps.setCapability(CapabilityType.PLATFORM, os);
         caps.setCapability("name", String.format("%s - %s %s on %s [%s]", methodName, browser, version, os, new Date()));
-        caps.setCapability("screenResolution", screenResolution);
         caps.setCapability("seleniumVersion", "3.7.1");
         caps.setCapability("build", System.getenv("JOB_NAME") + "__" + System.getenv("BUILD_NUMBER"));
 

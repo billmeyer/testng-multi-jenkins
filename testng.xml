@@ -28,7 +28,7 @@
 
     <test name="All Packages Test">
         <packages>
-            <package name="com.saucelabs.billmeyer.tests"/>
+            <package name="com.saucelabs.billmeyer.test"/>
         </packages>
     </test>
 </suite>

@@ -30,9 +30,8 @@ public class SauceOnDemandDataProvider
         List<Object[]> data = new ArrayList<Object[]>();
 
         //read browsers from JSON-formatted environment variable if specified
-        String json = Utils.readPropertyOrEnv(SAUCE_ONDEMAND_BROWSERS, "[{\"browser\": \"firefox\",\"version\": \"59.0\",\"os\": \"macOS 10.13\"," +
-                "\"screenResolution\":\"1600x1200\"},{\"browser\": \"chrome\",\"version\": \"66\",\"os\": \"macOS 10.13\"," +
-                "\"screenResolution\":\"1600x1200\"}]");
+        String json = Utils.readPropertyOrEnv(SAUCE_ONDEMAND_BROWSERS, "[{\"browser\": \"firefox\",\"version\": \"59.0\",\"os\": " +
+                "\"macOS 10.13\"},{\"browser\": \"chrome\",\"version\": \"66\",\"os\": \"macOS 10.13\"}]");
 
         System.out.printf("Sauce OnDemand Data Provider, json='%s'", json);
 
@@ -47,7 +46,7 @@ public class SauceOnDemandDataProvider
             for (Object object : browsers)
             {
                 JSONObject jsonObject = (JSONObject) object;
-                data.add(new Object[]{jsonObject.get("browser"), jsonObject.get("version"), jsonObject.get("os"), jsonObject.get("screenResolution")});
+                data.add(new Object[]{jsonObject.get("browser"), jsonObject.get("version"), jsonObject.get("os")});
             }
         }
         catch (ParseException e)

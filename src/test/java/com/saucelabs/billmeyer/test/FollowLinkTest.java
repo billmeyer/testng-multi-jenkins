@@ -17,11 +17,11 @@ public class FollowLinkTest extends TestBase
      * @throws InvalidElementStateException
      */
     @Test(dataProvider = "sauceOnDemandDataProvider")
-    public void verifyLinkTest(String browser, String version, String os, String screenResolution, Method method)
+    public void verifyLinkTest(String browser, String version, String os, Method method)
     throws MalformedURLException, InvalidElementStateException
     {
         // Create our web session...
-        WebDriver driver = createDriver(browser, version, os, screenResolution, method.getName());
+        WebDriver driver = createDriver(browser, version, os, method.getName());
         Assert.assertNotNull(driver);
 
         annotateJob("Visiting GuineaPig page...");

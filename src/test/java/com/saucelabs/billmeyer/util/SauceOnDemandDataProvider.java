@@ -1,10 +1,7 @@
 package com.saucelabs.billmeyer.util;
 
-import com.saucelabs.common.Utils;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.testng.annotations.DataProvider;
 
 import java.lang.reflect.Method;
@@ -30,8 +27,7 @@ public class SauceOnDemandDataProvider
         List<Object[]> data = new ArrayList<Object[]>();
 
         //read browsers from JSON-formatted environment variable if specified
-        String json = Utils.readPropertyOrEnv(SAUCE_ONDEMAND_BROWSERS, "[{\"browser\": \"firefox\",\"browser-version\": \"59.0\",\"os\": " +
-                "\"macOS 10.13\"},{\"browser\": \"chrome\",\"browser-version\": \"66\",\"os\": \"macOS 10.13\"}]");
+        String json = Util.readPropertyOrEnv(SAUCE_ONDEMAND_BROWSERS, "[{\"browser\": \"firefox\",\"browser-version\": \"59.0\",\"os\": " + "\"macOS 10.13\"},{\"browser\": \"chrome\",\"browser-version\": \"66\",\"os\": \"macOS 10.13\"}]");
 
         System.out.printf("Sauce OnDemand Data Provider, json='%s'", json);
 
@@ -40,18 +36,11 @@ public class SauceOnDemandDataProvider
             throw new IllegalArgumentException("Unable to find JSON");
         }
 
-        try
+        JSONArray browsers = new JSONArray(json);
+        for (Object object : browsers)
         {
-            JSONArray browsers = (JSONArray) new JSONParser().parse(json);
-            for (Object object : browsers)
-            {
-                JSONObject jsonObject = (JSONObject) object;
-                data.add(new Object[]{jsonObject.get("browser"), jsonObject.get("browser-version"), jsonObject.get("os")});
-            }
-        }
-        catch (ParseException e)
-        {
-            throw new IllegalArgumentException("Error parsing JSON String", e);
+            JSONObject jsonObject = (JSONObject) object;
+            data.add(new Object[]{jsonObject.get("browser"), jsonObject.get("browser-version"), jsonObject.get("os")});
         }
 
         return data.iterator();

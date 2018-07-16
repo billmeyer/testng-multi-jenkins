@@ -1,7 +1,7 @@
 package com.saucelabs.billmeyer.test;
 
 import com.saucelabs.billmeyer.util.SauceOnDemandDataProvider;
-import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.billmeyer.util.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -36,8 +36,6 @@ public class TestBase extends SauceOnDemandDataProvider
      * ThreadLocal variable which contains the Sauce Job Id.
      */
     private ThreadLocal<String> sessionIdThreadLocal = new ThreadLocal<String>();
-
-    private ThreadLocal<SauceREST> sauceRestThreadLocal = new ThreadLocal<SauceREST>();
 
     /**
      * @return the Sauce Job id for the current thread
@@ -132,8 +130,8 @@ public class TestBase extends SauceOnDemandDataProvider
          * 2. Using the Sauce Labs REST API which requires the credentials used to authenticate to Sauce.
          *      @see {@link #tearDown(ITestResult)} for an example
          */
-        SauceREST sauceREST = new SauceREST(userName, accesskey);
-        sauceRestThreadLocal.set(sauceREST);
+//        SauceREST sauceREST = new SauceREST(userName, accesskey);
+//        sauceRestThreadLocal.set(sauceREST);
 
         return webDriverThreadLocal.get();
     }
@@ -151,18 +149,18 @@ public class TestBase extends SauceOnDemandDataProvider
          *  @see https://wiki.saucelabs.com/display/DOCS/Annotating+Tests+with+the+Sauce+Labs+REST+API
          */
 
-        SauceREST sauceRest = sauceRestThreadLocal.get();
+        WebDriver driver = webDriverThreadLocal.get();
         String sessionId = sessionIdThreadLocal.get();
 
-        if (sauceRest != null && sessionId != null)
+        if (driver != null && sessionId != null)
         {
             if (result != null && result.isSuccess())
             {
-                sauceRest.jobPassed(sessionId);
+                Util.reportSauceLabsResult(driver, true);
             }
             else
             {
-                sauceRest.jobFailed(sessionId);
+                Util.reportSauceLabsResult(driver, false);
             }
             webDriverThreadLocal.get().quit();
         }

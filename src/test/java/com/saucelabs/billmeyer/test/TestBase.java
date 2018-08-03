@@ -80,7 +80,8 @@ public class TestBase extends SauceOnDemandDataProvider
         caps.setCapability(CapabilityType.VERSION, browserVersion);
         caps.setCapability(CapabilityType.PLATFORM, os);
 //        caps.setCapability("name", String.format("%s - %s %s on %s [%s]", methodName, browser, browserVersion, os, new Date()));
-        caps.setCapability("name", String.format("%s - %s %s on %s", methodName, browser, browserVersion, os));
+//        caps.setCapability("name", String.format("%s - %s %s on %s", methodName, browser, browserVersion, os));
+        caps.setCapability("name", String.format("%s", methodName));
         caps.setCapability("seleniumVersion", "3.7.1");
         caps.setCapability("build", System.getenv("JOB_NAME") + "__" + System.getenv("BUILD_NUMBER"));
 
